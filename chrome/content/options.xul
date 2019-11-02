@@ -12,12 +12,11 @@
   id="CorrectIdentity.options"
   title="&CorrectIdentity.title;"
   onload="window.CorrectIdentity.initOptions()"
-  ondialogaccept="window.CorrectIdentity.applyOptions()"
   width="&CorrectIdentity.width;"
   height="&CorrectIdentity.height;"
   persist="screenX screenY">
 
-  <script type="application/javascript" src="chrome://correctidentity/content/correctidentity.js"/>
+  <script type="application/javascript" src="correctidentity.js"/>
 
   <popupset>
     <tooltip id="aliasesTooltip"><description class="plain">&CorrectIdentity.aliasesTooltip;</description></tooltip>
