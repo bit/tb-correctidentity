@@ -196,18 +196,21 @@ var CorrectIdentity = {
       this.disableInterface(window.document.getElementById("detectionTab"));
       this.disableInterface(window.document.getElementById("safetyTab"));
     }
+    document.addEventListener("dialogaccept", window.CorrectIdentity.applyOptions);
   },
 
   applyOptions: function()
   {
+
+
     // Persist preferences of all accounts to the user preferences system
     if (window.document.getElementById('accountSelector').selectedItem)
-      this.pickAccount(window.document.getElementById('accountSelector').selectedItem.value);
-    let oAccounts = this.settings.accounts;
+      window.CorrectIdentity.pickAccount(window.document.getElementById('accountSelector').selectedItem.value);
+    let oAccounts = window.CorrectIdentity.settings.accounts;
     for (let sKey in oAccounts)
     {
       let oAccount = oAccounts[sKey];
-      this.preferences.setCharPref(
+      window.CorrectIdentity.preferences.setCharPref(
         "settings_" + sKey,
         ([oAccount.type, oAccount.identityMechanism, oAccount.explicitIdentity, oAccount.replyFromRecipient ? "true" : "false"]).join("\x01")
       );
@@ -215,14 +218,14 @@ var CorrectIdentity = {
 
     // Persist detection and safety preferences of all identities to the user preferences system
     if (window.document.getElementById('identitySelector').selectedItem)
-      this.pickIdentity(window.document.getElementById('identitySelector').selectedItem.value);
+      window.CorrectIdentity.pickIdentity(window.document.getElementById('identitySelector').selectedItem.value);
     if (window.document.getElementById('safetyIdentitySelector').selectedItem)
-      this.pickSafetyIdentity(window.document.getElementById('safetyIdentitySelector').selectedItem.value);
-    let oIdentities = this.settings.identities;
+      window.CorrectIdentity.pickSafetyIdentity(window.document.getElementById('safetyIdentitySelector').selectedItem.value);
+    let oIdentities = window.CorrectIdentity.settings.identities;
     for (let sKey in oIdentities)
     {
       let oIdentity = oIdentities[sKey];
-      this.preferences.setCharPref(
+      window.CorrectIdentity.preferences.setCharPref(
         "settings_" + sKey,
         ([oIdentity.detectable ? "true" : "false", oIdentity.aliases, oIdentity.warningAliases]).join("\x01")
       );
@@ -387,7 +390,7 @@ var CorrectIdentity = {
       // Uncomment to view what hinted addresses are evaluated:
       //Components.classes["@mozilla.org/consoleservice;1"]
       //  .getService(Components.interfaces.nsIConsoleService)
-      //  .logStringMessage("CorrectIndentity evaluated hints:\n" + optionalHint);
+      //  .logStringMessage("CorrectIdentity evaluated hints:\n" + optionalHint);
 
       optionalHint = optionalHint.toLowerCase();
       if (!(oIdentity && (oIdentity.email.indexOf("@") != -1) && (optionalHint.indexOf(oIdentity.email.toLowerCase()) >= 0)))
@@ -572,3 +575,4 @@ var CorrectIdentity = {
 };
 
 window.addEventListener('load', CorrectIdentity.init, false);
+window.addEventListener("dialogaccept", CorrectIdentity.applyOptions, false);
