@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://correctidentity/skin/options.css" type="text/css"?>
+<?xml-stylesheet href="chrome://messenger/skin/messenger.css" type="text/css"?>
 
 <!DOCTYPE dialog [
   <!ENTITY % CorrectIdentityDTD SYSTEM "chrome://correctidentity/locale/correctidentity.dtd">
@@ -37,12 +38,12 @@
         <description>&CorrectIdentity.accountsDescription;</description>
 
         <groupbox flex="1">
-          <caption align="center">
+          <hbox class="groupbox-title" align="center">
             <description class="plain" align="center">&CorrectIdentity.accountSelector;</description>
             <menulist id="accountSelector" oncommand="window.CorrectIdentity.pickAccount(this.selectedItem.value)">
               <menupopup><menuitem/></menupopup>
             </menulist>
-          </caption>
+          </hbox>
 
           <description>&CorrectIdentity.mechanismDescription;</description>
           <radiogroup id="identityMechanism" oncommand="window.CorrectIdentity.updateMechanism()">
@@ -69,13 +70,13 @@
         <description>&CorrectIdentity.detectionDescription;</description>
 
         <groupbox flex="1">
-          <caption align="center">
+          <hbox class="groupbox-title" align="center">
             <description class="plain" align="center">&CorrectIdentity.identitySelector;</description>
             <menulist id="identitySelector" sizetopopup="false" width="&CorrectIdentity.identitySelectorWidth;"
                       oncommand="window.CorrectIdentity.pickIdentity(this.selectedItem.value)">
               <menupopup><menuitem/></menupopup>
             </menulist>
-          </caption>
+          </hbox>
 
           <hbox pack="start">
             <checkbox id="detectable" label="&CorrectIdentity.identityDetectable;"
@@ -85,7 +86,7 @@
           <separator class="thin"/>
 
           <description>&CorrectIdentity.aliasesDescription;</description>
-          <textbox id="aliases" flex="1" multiline="true" disabled="true" tooltip="aliasesTooltip"/>
+          <html:textarea id="aliases" flex="1" disabled="true" tooltip="aliasesTooltip"/>
         </groupbox>
       </tabpanel>
 
@@ -93,16 +94,16 @@
         <description>&CorrectIdentity.safetyDescription;</description>
 
         <groupbox flex="1">
-          <caption align="center">
+          <hbox class="groupbox-title" align="center">
             <description class="plain" align="center">&CorrectIdentity.identitySelector;</description>
             <menulist id="safetyIdentitySelector" sizetopopup="false" width="&CorrectIdentity.identitySelectorWidth;"
                       oncommand="window.CorrectIdentity.pickSafetyIdentity(this.selectedItem.value)">
               <menupopup><menuitem/></menupopup>
             </menulist>
-          </caption>
+          </hbox>
 
           <description>&CorrectIdentity.warningAliasesDescription;</description>
-          <textbox id="warningAliases" flex="1" multiline="true" disabled="true" tooltip="warningAliasesTooltip"/>
+          <html:textarea id="warningAliases" flex="1" disabled="true" tooltip="warningAliasesTooltip"/>
         </groupbox>
       </tabpanel>
     </tabpanels>
