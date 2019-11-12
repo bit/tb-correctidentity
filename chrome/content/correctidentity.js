@@ -309,11 +309,11 @@ var CorrectIdentity = {
 
   delayedInit: function()
   {
-    if (window.getIdentityForServer && (window.CorrectIdentity.origgetIdentityForServer == null))
+    if (window.MailUtils.getIdentityForServer && (window.CorrectIdentity.origgetIdentityForServer == null))
     {
       // Overlay function getIdentityForServer of chrome://messenger/content/mailCommands.js (mail/base/content/mailCommands.js)
       window.CorrectIdentity.origgetIdentityForServer = window.getIdentityForServer;
-      window.getIdentityForServer = window.CorrectIdentity.getIdentityForServer;
+      window.MailUtils.getIdentityForServer = window.CorrectIdentity.getIdentityForServer;
 
       let appInfo = Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULAppInfo);
       window.CorrectIdentity.lastHintIsDeliveredTo = (appInfo.name == 'Thunderbird') && (parseInt(appInfo.version, 10) >= 13);
